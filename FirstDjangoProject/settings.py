@@ -25,22 +25,20 @@ SECRET_KEY = '17m9_(s&+pk@z31nhv-3+-)0m@k^)o74ri#ric(w_%x!+i(^%q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'baton',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'baton.autodiscover',
     'Home',
-    'crispy-forms'
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
