@@ -3,6 +3,7 @@ from .forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 import os
+import mimetypes
 from django.conf import settings
 from django.http import HttpResponse, Http404
 
@@ -15,13 +16,14 @@ def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 
 def download(request):
-    file_path = os.path.join(settings.MEDIA_ROOT, 'Akash Kantrikar - Resume.pdf')
-    print('file_path', file_path)
-    if os.path.exists(file_path):
-        with open(file_path, 'rb') as fh:
-            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
-            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
-            return response
+    filename = 'Akash Kantrikar - Resume.pdf'
+    if filename != '':
+        file_path = os.path.join(settings.MEDIA_ROOT, 'Akash Kantrikar - Resume.pdf')
+        path = open(file_path, 'rb')
+        mime_type, _ = mimetypes.guess_type(file_path)
+        response = HttpResponse(path, content_type=mime_type)
+        response['Content-Disposition'] = "attachment; filename=%s" % filename
+        return response
     raise Http404
 
 def contact(request):
