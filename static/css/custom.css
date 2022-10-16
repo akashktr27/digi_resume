@@ -1,0 +1,5 @@
+page-header-image{
+  "background-image: url('images/cc-bg-1.jpg') "
+}
+background: url('{{ STATIC_URL }}my_app/example.jpg'
+"background-image: url('images/cc-bg-1.jpg') "
