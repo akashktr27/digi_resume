@@ -127,9 +127,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-BATON ={
-    'SITE_HEADER': 'Admin Page Cus',
-    'SITE_TITLE': 'Cus Title',
-    'INDEX_TITLE': 'Site Cus'
-
-}
+MEDIA_DIR = os.path.join(BASE_DIR,'media')
+#Media
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
