@@ -1,16 +1,12 @@
-import speech_recognition as sr
-import pyttsx3
-import pywhatkit
-import datetime
-import wikipedia
-import pyjokes
+class Emp:
+    def __int__(self, id, name):
+        self.id = id
+        self.name = name
 
-listener = sr.Recognizer()
-engine = pyttsx3.init()
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
+    def show(self):
+        print(self.id, self.name)
 
-def talk(text):
-    engine.say(text)
-    engine.runAndWait()
 
+a = Emp(1, "aka")
+
+print(a.show())
