@@ -19,8 +19,8 @@ class SmsMiddleware:
 
 def send_msg(name, subject, email, message):
 
-    account_sid = 'ACb4b260d65c18e8a26b2c70a886c4e6ce'
-    auth_token = 'fad4032025cdd06ddb40e84d2140045d'
+    account_sid = 'some'
+    auth_token = 'some'
     client = Client(account_sid, auth_token)
     message = client.messages.create(
         body=f"You got a message from {name}.\n"
