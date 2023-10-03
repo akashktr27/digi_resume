@@ -21,7 +21,7 @@ def homepage(request):
         contact.email = email
         contact.message = message
         contact.save()
-        messages.info(request, 'Your password has been changed successfully!')
+
     return render(request, "index.html")
 
 def download(request):

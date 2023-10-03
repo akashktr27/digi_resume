@@ -48,7 +48,11 @@
 <div class="profile-page">
   <div class="wrapper">
     <div class="page-header page-header-small" filter-color="green">
-      <div class="page-header-image" data-parallax="true" style="background-image: url({% static 'images/cc-bg-1.jpg' %}')"></div>
+<!--      <div class="page-header-image" data-parallax="true" style="background-image: url({% static 'images/cc-bg-1.jpg' %}')"></div>-->
+      <img class="page-header-image" data-parallax="true" src="{% static 'images/cc-bg-1.jpg' %}">
+
+
+
       <div class="container">
         <div class="content-center">
           <div class="cc-profile-image"><a href="#"><img src="{% static 'images/akash.jpg' %}" alt="Image"/></a></div>
@@ -86,7 +90,7 @@
             <div class="h4 mt-0 title">Basic Information</div>
             <div class="row">
               <div class="col-sm-4"><strong class="text-uppercase">Age:</strong></div>
-              <div class="col-sm-8">24</div>
+              <div class="col-sm-8">25</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
@@ -186,7 +190,7 @@
         <div class="ml-auto mr-auto">
           <div class="row">
             <div class="col-md-6">
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#web-development">
+              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="https://yousee.pythonanywhere.com/" target="_blank">
                   <figure class="cc-effect"><img src="{% static 'images/project-1.jpg' %}" alt="Image"/>
                     <figcaption>
                       <div class="h4">Recent Project</div>
@@ -209,7 +213,7 @@
                       <p>Web Development</p>
                     </figcaption>
                   </figure></a></div>
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#web-development">
+              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="https://www.shobha-tourist.com/" target="_blank">
                   <figure class="cc-effect"><img src="{% static 'images/project-4.jpg' %}" alt="Image"/>
                     <figcaption>
                       <div class="h4">Web Advertising Project</div>
@@ -306,14 +310,14 @@
       <div class="row">
         <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
           <div class="card-body cc-experience-header">
-            <p>June 2022 - Present</p>
+            <p>June 2022 - Mar 2023</p>
             <div class="h5">Infosys</div>
           </div>
         </div>
         <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
           <div class="card-body">
             <div class="h5">Senior System Engineer</div>
-            <p>Provided leadership as a subject matter exper(SME) on migrating citrix application to cloud services, hosting issues and general upgrades/maintainance of servers. Ensured fulfillment of bussiness data-extraction requirements developing custom reports. Programmed customized software solutions that helped customers to use their capital and manage risk more effectively.</p>
+            <p>Designed and implemented RESTful APIs using Django and Django Rest Framework to handle product catalog, user authentication. Utilized serializers to validate and parse incoming JSON data, ensuring data consistency. Employed caching mechanisms to optimize frequent database queries, improving the response time of API endpoints. Used Django Debug Toolbar and query optimization techniques to identify and address performance bottlenecks. Worked collaboratively with frontend developers to define API requirements and ensure smooth integration.</p>
           </div>
         </div>
       </div>
