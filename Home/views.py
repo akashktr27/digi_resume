@@ -1,12 +1,12 @@
-from django.shortcuts import render, redirect
-from .forms import ContactForm
-from django.core.mail import send_mail, BadHeaderError
-from django.contrib import messages
+from django.shortcuts import render
+from django.http import JsonResponse
 from .models import Contact
 import os
 import mimetypes
 from django.conf import settings
 from django.http import HttpResponse, Http404
+from twilio.rest import Client
+
 
 # Create your views here.
 def homepage(request):
@@ -34,5 +34,45 @@ def download(request):
         response['Content-Disposition'] = "attachment; filename=%s" % filename
         return response
     raise Http404
+
+
+
+def send_msg(name, subject, email, message):
+
+    account_sid = 'ACb4b260d65c18e8a26b2c70a886c4e6ce'
+    auth_token = '36b07eb3aad0fb5878cbf5cdc61a0e87'
+    client = Client(account_sid, auth_token)
+    message = client.messages.create(
+        body=f"You got a message from {name}.\n"
+             f"subject: {subject}. \n"
+             f"email: {email}. \n"
+             f"message: {message}.\n",
+        from_='+19898502083',
+        to='+919900942125'
+    )
+    return message.sid
+
+
+
+def json_response(request):
+    print("json request is received")
+    if request.method == 'POST':
+        print(request.POST)
+        contact = Contact()
+        name = request.POST.get('name')
+        subject = request.POST.get('subject')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        try:
+            Contact.objects.create(name=name, subject=subject, email=email, message=message)
+            send_msg(name, subject, email, message)
+            status = "success"
+        except Exception as e:
+            status = str(e)
+        finally:
+            return JsonResponse({"status": status})
+
+    return JsonResponse({"status":"unknown"})
+
 
 
