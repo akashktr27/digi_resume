@@ -39,8 +39,8 @@ def download(request):
 
 def send_msg(name, subject, email, message):
 
-    account_sid = 'ACb4b260d65c18e8a26b2c70a886c4e6ce'
-    auth_token = '36b07eb3aad0fb5878cbf5cdc61a0e87'
+    account_sid = '*****'
+    auth_token = '*****'
     client = Client(account_sid, auth_token)
     message = client.messages.create(
         body=f"You got a message from {name}.\n"
