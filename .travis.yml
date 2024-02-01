@@ -1,0 +1,20 @@
+# taken from https://github.com/niteshpatel/habitica-slack/
+language: python
+
+python:
+- "3.10"
+
+# env:
+# - DJANGO
+
+install:
+- pip install -r requirements.txt
+# - pip install codeclimate-test-reporter
+# - pip install -q Django==$DJANGO
+
+script:
+- export DJANGO_SECRETKEY=secret # needed because settings.py pulls it from os.environ
+# - coverage run --source=habitica_slack manage.py test # create test coverage report
+
+after_script:
+# - codeclimate-test-reporter --file .coverage # send test coverage report to code climate
