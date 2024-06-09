@@ -18,6 +18,7 @@
             opacity: 1 !important;
             transform: translate(0) scale(1) !important;
         }
+        var markAsReadUrl = "{% url 'json_response' %}";
       </style>
     </noscript>
   </head>
@@ -90,7 +91,7 @@
             <div class="h4 mt-0 title">Basic Information</div>
             <div class="row">
               <div class="col-sm-4"><strong class="text-uppercase">Age:</strong></div>
-              <div class="col-sm-8">25</div>
+              <div class="col-sm-8">26</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
@@ -306,6 +307,24 @@
 <div class="section" id="experience">
   <div class="container cc-experience">
     <div class="h4 text-center mb-4 title">Work Experience</div>
+
+      <div class="card">
+      <div class="row">
+        <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+          <div class="card-body cc-experience-header">
+            <p>Oct 2023 - present</p>
+            <div class="h5">Sacumen</div>
+          </div>
+        </div>
+        <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
+          <div class="card-body">
+            <div class="h5">Software Developer - Python</div>
+            <p>loading...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="card">
       <div class="row">
         <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
@@ -473,43 +492,47 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="card-body">
-                    <form action="" method="POST">
-                      {% csrf_token %}
+
+
                       <div class="p pb-3"><strong>Feel free to contact me </strong></div>
                       <div class="row mb-3">
                         <div class="col">
                           <div class="input-group"><span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input class="form-control" type="text" name="name" placeholder="Name" required="required"/>
+                            <input class="form-control" type="text" name="name" placeholder="Name" id="sender_name" required/>
                           </div>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <div class="col">
                           <div class="input-group"><span class="input-group-addon"><i class="fa fa-file-text"></i></span>
-                            <input class="form-control" type="text" name="Subject" placeholder="Subject" required="required"/>
+                            <input class="form-control" type="text" name="Subject" placeholder="Subject" id="sender_subject" required="required"/>
                           </div>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <div class="col">
                           <div class="input-group"><span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                            <input class="form-control" type="email" name="email" placeholder="E-mail" required="required"/>
+                            <input class="form-control" type="email" name="email" placeholder="E-mail" id="sender_email" required="required"/>
                           </div>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <div class="col">
                           <div class="form-group">
-                            <textarea class="form-control" name="message" placeholder="Your Message" required="required"></textarea>
+                            <textarea class="form-control" name="message" placeholder="Your Message" id="sender_message" required></textarea>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col">
-                          <button class="btn btn-primary" type="submit" onclick="myFunction()">Send</button>
+                          <button class="btn btn-primary" type="submit" id="markAllReadBtn">Send</button>
                         </div>
+                        <div class="spinner" style="display: none;">Message saving...</div>
+                        <p class="mb-0" id="responseMessage" style="display: none;">**** Message Sent ****</p>
+                        <p class="mb-0" id="errorMessage" style="display: none;">**** Exception found in msg ****</p>
+
                       </div>
-                    </form>
+
 
                   </div>
                 </div>
@@ -543,22 +566,12 @@
       </div>
     </footer>
     <script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/core/popper.min.js' %}"></script>
     <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/now-ui-kit.js' %}"></script>
     <script src="{% static 'js/aos.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/custom.js' %}"></script>
-  <script>
-      function myFunction() {
-      alert("Thank you for contacting, I will get back to you.");
-
-<!--document.getElementById("quiz-box").innerHTML = `<div class="alert alert-primary" role="alert">-->
-<!--                        This is a primary alert—check it out!-->
-<!--                    </div>`;-->
-<!--        document.getElementById("quiz-box").innerHTML = "Thank you for contacting, I will get back to you.";-->
-      }
-    </script>
-
 
   </body>
 </html>
