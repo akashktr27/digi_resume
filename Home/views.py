@@ -5,7 +5,6 @@ import os
 import mimetypes
 from django.conf import settings
 from django.http import HttpResponse, Http404
-from twilio.rest import Client
 
 
 # Create your views here.

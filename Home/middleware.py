@@ -1,38 +1,53 @@
-from twilio.rest import Client
+from django.utils.deprecation import MiddlewareMixin
+from Home.models import *
+from django.urls import resolve
 
+class ClientMetadataMiddleware(MiddlewareMixin):
+    def process_request(self, request):
+        if hasattr(request, '_metadata_saved'):
+            return
 
-class SmsMiddleware:
-    def __init__(self, get_response):
-        self.get_response = get_response
+        # Collect client metadata
+        ip_address = self.get_client_ip(request)
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
+        referrer = request.META.get('HTTP_REFERER', '')
 
-    def __call__(self,request, *args, **kwargs):
-        # print(request.method)
-        # if request.method == 'POST':
-        #     name = request.POST.get('name')
-        #     subject = request.POST.get('Subject')
-        #     email = request.POST.get('email')
-        #     message = request.POST.get('message')
-        #     send_msg(name, subject, email, message)
-        response = self.get_response(request)
-        pass
-        return response
+        resolver_match = resolve(request.path_info)
+        view_name = resolver_match.view_name
 
+        locals = ['localhostss', '127.0.0.1ss']
+        if ip_address in locals:
+            pass
+        else:
+            if request.method == 'POST':
+                # Save POST request metadata to the PostRequestMetadata model
+                post_data = request.POST.dict()  # Convert POST data to a dictionary
+                PostRequestMetadata.objects.create(
+                    ip_address=ip_address,
+                    user_agent=user_agent,
+                    referrer=referrer,
+                    post_data=str(post_data)  # Save POST data as a string
+                )
+            elif view_name == 'index':  # Replace with your specific view name
+                ResumeViewMetadata.objects.create(
+                    ip_address=ip_address,
+                    user_agent=user_agent,
+                    referrer=referrer,
+                    view_name=view_name
+                )
+            else:
+                # Save general request metadata to the ClientMetadata model
+                ClientMetadata.objects.create(
+                    ip_address=ip_address,
+                    user_agent=user_agent,
+                    referrer=referrer
+                )
 
-
-def send_msg(name, subject, email, message):
-
-    account_sid = 'ACb4b260d65c18e8a26b2c70a886c4e6ce'
-    auth_token = '36b07eb3aad0fb5878cbf5cdc61a0e87'
-    client = Client(account_sid, auth_token)
-    message = client.messages.create(
-        body=f"\n"
-             f"Name: {name}.\n"
-             f"subject: {subject}. \n"
-             f"email: {email}. \n"
-             f"message: {message}.\n",
-        from_='+12407700012',
-        to='+919900942125'
-    )
-    return message.sid
-
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]  # Take the first IP in the list
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
 
