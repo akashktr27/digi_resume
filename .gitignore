@@ -19,3 +19,4 @@ Home/migrations/__pycache__/0002_clientmetadata.cpython-39.pyc
 Home/migrations/__pycache__/0003_postrequestmetadata.cpython-39.pyc
 Home/migrations/__pycache__/0004_resumeviewmetadata.cpython-39.pyc
 Home/migrations/__pycache__/__init__.cpython-39.pyc
+Home/__pycache__

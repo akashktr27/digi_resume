@@ -80,7 +80,7 @@ $("#markAllReadBtn").on("click", function () {
      spinner.show();
      $.ajax({
         type: "POST",
-        url: '/json_response',
+        url: '/save_contact',
         data: {
             name: name,
             email: email,
