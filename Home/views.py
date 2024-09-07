@@ -61,7 +61,7 @@ def send_msg(name, subject, email, message):
 
 
 
-def json_response(request):
+def save_contact(request):
     print("json request is received")
 
     if request.method == 'POST':
