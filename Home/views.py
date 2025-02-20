@@ -24,9 +24,9 @@ def homepage(request):
     return render(request, "index.html")
 
 def download(request):
-    filename = 'Akash Kantrikar - Resume.pdf'
+    filename = 'akash-kantrikar-resume.pdf'
     if filename != '':
-        file_path = os.path.join(settings.MEDIA_ROOT, 'Akash Kantrikar - Resume.pdf')
+        file_path = os.path.join(settings.MEDIA_ROOT, 'resume.pdf')
         path = open(file_path, 'rb')
         mime_type, _ = mimetypes.guess_type(file_path)
         response = HttpResponse(path, content_type=mime_type)

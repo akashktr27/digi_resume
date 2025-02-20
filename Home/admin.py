@@ -6,7 +6,7 @@ admin.site.register(Contact)
 
 @admin.register(ClientMetadata)
 class ClientMetadataAdmin(admin.ModelAdmin):
-    list_display = ('ip_address', 'user_agent', 'referrer', 'timestamp')
+    list_display = ('ip_address', 'user_agent', 'referrer', 'timestamp', "region_name")
     search_fields = ('ip_address', 'user_agent', 'referrer')
 
 @admin.register(PostRequestMetadata)
@@ -16,5 +16,5 @@ class PostRequestMetadataAdmin(admin.ModelAdmin):
 
 @admin.register(ResumeViewMetadata)
 class SpecialViewMetadataAdmin(admin.ModelAdmin):
-    list_display = ('ip_address', 'user_agent', 'referrer', 'view_name', 'timestamp')
+    list_display = ('ip_address', 'user_agent', 'referrer', 'view_name', "resume_region_name", 'timestamp')
     search_fields = ('ip_address', 'user_agent', 'referrer', 'view_name')

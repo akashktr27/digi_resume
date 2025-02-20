@@ -2,3 +2,4 @@ Django==2.2.1
 django-baton==2.3.0
 django-crispy-forms==1.14.0
 entrypoints==0.4
+requests
